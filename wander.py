@@ -9,7 +9,7 @@ import easygopigo3 as easy
 gpg = easy.EasyGoPiGo3(use_mutex=True)
 my_Distance_portI2C = easy.DistanceSensor('I2C', gpg, use_mutex=True)
 
-STOP = 150 # Distance from obstacle where the GoPiGo should stop
+STOP = 152 # 152mm ~ 6in
 look_angle = 90
 
 time.sleep(0.1)
@@ -22,7 +22,7 @@ fwd() # Start moving
 # start
 while True:
     dist =  my_Distance_portI2C.read_mm()
-    if dist == STOP:
+    if dist <= STOP:
         stop()
 	break
     else:
